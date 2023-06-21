@@ -1,0 +1,1 @@
+export const dbUrl = 'https://mockapi-yorn.onrender.com/details/'
