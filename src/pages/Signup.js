@@ -5,6 +5,8 @@ import { dbUrl } from '../api'
 
 const Signup = () => {
 
+    console.log("signupPage rendering");
+
     const [formData, setFormData] = useState({
         companyName: "",
         subdomain: ""

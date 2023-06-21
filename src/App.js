@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter,Routes, Route} from "react-router-dom"
-import {getSubdomain, subDomain } from './utlis/helper';
+import {subDomain } from './utlis/helper';
 import { AppRouter, SignupRouter } from './routes';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -10,8 +10,11 @@ import { dbUrl } from './api';
 
 function App() {
 
+  console.log("App rendering");
+
  const [user, setUser] = useState(false)
  let subdomain = subDomain();;
+ console.log("subDomain app", subdomain);
  const getDetail = async()=>{
   const data = await axios.get(dbUrl)
   let userData = data?.data?.find((user)=>user.subdomain === subdomain)

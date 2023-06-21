@@ -20,7 +20,7 @@ export const getSubdomain = (location)=>{
 }
 
 const getSubdomainAsPerFuzzRender = (url)=>{
-   let arr = url?.split('//')[1]?.split(".");
+   let arr = url?.split(".");
    if(arr.length == 4){
     return arr[0]
    }else{
@@ -35,6 +35,7 @@ if(typeof window !== undefined){
     console.log("hostname", window.location.hostname);
     console.log("environment", process.env);
     const subDomain = isDevEnv ? getSubdomain(window.location.hostname) : getSubdomainAsPerFuzzRender(window.location.hostname)
+    console.log("Subdomain", subDomain);
     return subDomain
 }else{
     return ""

@@ -4,7 +4,10 @@ import axios from 'axios'
 import { dbUrl } from '../api'
 import { siteUrl } from '../utlis/siteUrl'
 
+
 const Home = () => {
+
+  console.log("Home rendering");
 
   const subdomain = subDomain()
   const [userDetail, setUserDetail] = useState({})
@@ -20,8 +23,6 @@ const Home = () => {
     }
     
   }
-
-  console.log({userDetail});
 
   useEffect(()=>{
    getDetail()
@@ -45,6 +46,7 @@ const Home = () => {
       <p>can hit api with {`http://${userDetail.subdomain}.com/api/`}</p>
 
       <button onClick={handleLogout}>Delete User</button>
+   
     </div>
   )
 }
