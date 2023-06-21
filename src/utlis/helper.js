@@ -1,4 +1,7 @@
 
+export const isDevEnv = process.env.NODE_ENV === "development" ? true :false
+
+
 export const getSubdomain = (location)=>{
     const locationParts = location.split(".");
    
@@ -8,6 +11,7 @@ export const getSubdomain = (location)=>{
 
     if(isLocalHost)  sliceTo = -1;
 
+    
 
     return locationParts.slice(0, sliceTo).join("") 
     // remove last 1 or 2 element depend upon example.localhost (remove 1 item i.e., localhost) return example
@@ -15,9 +19,23 @@ export const getSubdomain = (location)=>{
 
 }
 
+const getSubdomainAsPerFuzzRender = (url)=>{
+   let arr = url?.split('//')[1]?.split(".");
+   if(arr.length == 4){
+    return arr[0]
+   }else{
+   return  ""
+   }
+}
+
+
+
 export const subDomain = ()=>{
 if(typeof window !== undefined){
-    return getSubdomain(window.location.hostname)
+    console.log("hostname", window.location.hostname);
+    console.log("environment", process.env);
+    const subDomain = isDevEnv ? getSubdomain(window.location.hostname) : getSubdomainAsPerFuzzRender(window.location.hostname)
+    return subDomain
 }else{
     return ""
 }

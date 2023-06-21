@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getSubdomain, subDomain } from '../utlis/helper'
 import axios from 'axios'
 import { dbUrl } from '../api'
+import { siteUrl } from '../utlis/siteUrl'
 
 const Home = () => {
 
@@ -29,7 +30,7 @@ const Home = () => {
   const handleLogout = ()=>{
     deleteUser(userDetail.id).then((res)=>{
       if(typeof window !== undefined){
-        window.location.assign("http://localhost:3000")
+        window.location.assign(siteUrl)
       }
     })
   }
