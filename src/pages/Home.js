@@ -7,8 +7,6 @@ import { siteUrl } from '../utlis/siteUrl'
 
 const Home = () => {
 
-  console.log("Home rendering");
-
   const subdomain = subDomain()
   const [userDetail, setUserDetail] = useState({})
   const deleteUser = async(id)=>{

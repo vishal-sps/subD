@@ -2,15 +2,16 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { dbUrl } from '../api'
+import { isDevEnv } from '../utlis/helper'
 
 const Signup = () => {
-
-    console.log("signupPage rendering");
 
     const [formData, setFormData] = useState({
         companyName: "",
         subdomain: ""
     })
+
+    const [generatedUrl, setGeneratedUrl] = useState("")
 
     const handleChange = (e)=>{
         let name = e.target.name;
@@ -28,7 +29,11 @@ const Signup = () => {
         e.preventDefault();
         if(formData.companyName !== "" && formData.subdomain !== ""){
          postDetail(formData)
-        console.log(`http://${formData.subdomain}.localhost:3000`);
+         if(typeof window !== undefined){
+         let generatedlink = isDevEnv ?  `http://${formData.subdomain}.localhost:3000` : `https://${formData.subdomain}.${window.location.hostname}`
+        setGeneratedUrl(generatedlink)
+         }
+ 
         }
         
     }
@@ -36,6 +41,7 @@ const Signup = () => {
   return (
     <div>
         <h1> Signup </h1>
+
     <div>
         <form onSubmit={handleSubmit}>
             <div>
@@ -45,6 +51,10 @@ const Signup = () => {
 
             </div>
         </form>
+        <div className='mt-25'>
+        {generatedUrl &&  <a href={generatedUrl} target='_blank'> {generatedUrl} </a> }
+
+        </div>
     </div>
     </div>
   )

@@ -10,11 +10,9 @@ import { dbUrl } from './api';
 
 function App() {
 
-  console.log("App rendering");
-
  const [user, setUser] = useState(false)
- let subdomain = subDomain();;
- console.log("subDomain app", subdomain);
+ let subdomain = subDomain();
+ console.log("subdomain", subdomain);
  const getDetail = async()=>{
   const data = await axios.get(dbUrl)
   let userData = data?.data?.find((user)=>user.subdomain === subdomain)
